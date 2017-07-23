@@ -5,3 +5,5 @@
     - php-fpm
     - nginx
     - glusterfs
+
+- include: glusterfs_volumes.yml

@@ -1,6 +1,5 @@
 ---
-- name: install glusterfs-server
+- name: Install glusterfs-server
   apt:
-    apt: glusterfs-server
-    state: installed
-    update_cache: yes
+    pkg: glusterfs-server
+    state: latest
