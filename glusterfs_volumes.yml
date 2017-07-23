@@ -1,4 +1,5 @@
 ---
+# https://www.jeffgeerling.com/blog/simple-glusterfs-setup-ansible
 # - hosts: gluster1
 #   tasks:
 #     — name: GlusterFS | Create Volume 1
