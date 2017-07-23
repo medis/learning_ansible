@@ -1,0 +1,7 @@
+# web
+- hosts: web
+  become: true
+  roles:
+    - php-fpm
+    - nginx
+    - glusterfs
