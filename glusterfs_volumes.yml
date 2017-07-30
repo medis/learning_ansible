@@ -26,7 +26,7 @@
 #           - 192.168.1.130
 #         run_once: true
 
-- hosts: gluster_droplets
+- hosts: gluster
   become: true
 
   vars_files:
@@ -45,7 +45,7 @@
         name: "{{ gluster_brick_name }}"
         brick: "{{ gluster_brick_dir }}"
         replicas: 2
-        cluster: "192.168.1.227,192.168.1.130"
+        cluster: "{{ groups.gluster | join(',') }}"
         host: "{{ inventory_hostname }}"
         force: yes
       run_once: true
