@@ -1,0 +1,10 @@
+---
+- name: PERCONA | Install Percona XtraDB Cluster server
+  apt: pkg={{ item }}
+       state=present
+  with_items:
+    - percona-xtradb-cluster-full-57
+    - percona-nagios-plugins
+    - python-mysqldb
+    - xinetd
+    - git

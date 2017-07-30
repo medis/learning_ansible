@@ -1,0 +1,5 @@
+---
+- name: PERCONA | Configure Percona XtraDB Cluster
+  template: src=etc/mysql/my.cnf.j2
+            dest=/etc/mysql/my.cnf
+            mode=0640 owner=mysql group=root

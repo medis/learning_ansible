@@ -1,0 +1,12 @@
+---
+# file: vars/main.yml
+# these values are default - change for security!
+galera_conf:
+    bind_address: 0.0.0.0
+    dbusers:
+        xtrabackup:
+            username: xtrabackup
+            password: xtrabackup
+        root:
+            username: root
+            password: rootpassword

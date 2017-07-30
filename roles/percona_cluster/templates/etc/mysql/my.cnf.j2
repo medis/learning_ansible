@@ -1,0 +1,67 @@
+[client]
+port            = 3306
+socket          = /var/run/mysqld/mysqld.sock
+
+[mysqld_safe]
+socket          = /var/run/mysqld/mysqld.sock
+nice            = 0
+
+[mysqld]
+
+bind_address            = {{ galera_conf['bind_address'] }}
+user                    = mysql
+pid-file                = /var/run/mysqld/mysqld.pid
+socket                  = /var/run/mysqld/mysqld.sock
+port                    = 3306
+basedir                 = /usr
+datadir                 = /var/lib/mysql
+default_storage_engine  = InnoDB
+tmpdir                  = /tmp
+
+skip-name-resolve
+
+lc-messages-dir         = /usr/share/mysql
+skip-external-locking
+
+myisam-recover          = BACKUP
+
+log_error               = /var/log/mysql/err.log
+slow_query_log          = 1
+long_query_time         = 2
+log-queries-not-using-indexes
+
+# server-id               = 1
+log_bin                 = /var/log/mysql/mysql-bin.log
+sync_binlog             = 1
+binlog_format           = ROW
+expire_logs_days        = 2
+log_slave_updates
+
+wsrep_provider          = /usr/lib/libgalera_smm.so
+wsrep_sst_method        = xtrabackup-v2
+wsrep_sst_auth          = {{ galera_conf['dbusers']['xtrabackup']['username'] }}:{{ galera_conf['dbusers']['xtrabackup']['password'] }}
+wsrep_cluster_name      = percona-cluster
+
+wsrep_dirty_reads       = ON
+
+wsrep_cluster_address   = gcomm://consul.service.discovery
+wsrep_node_name         = {{ ansible_enp0s8.ipv4.address }}
+
+default_storage_engine          = InnoDB
+innodb_autoinc_lock_mode        = 2
+
+[mysqldump]
+quick
+quote-names
+max_allowed_packet      = 16M
+
+[mysql]
+#no-auto-rehash # faster start of mysql but no tab completition
+
+[isamchk]
+key_buffer              = 16M
+
+
+ 
+
+!includedir /etc/mysql/conf.d/

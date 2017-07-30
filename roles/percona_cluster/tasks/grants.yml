@@ -1,0 +1,11 @@
+---
+
+- name: PERCONA | Add xtrabackup database user (for Galera SST)
+  mysql_user: user={{ galera_conf['dbusers']['xtrabackup']['username'] }} host="localhost" password={{ galera_conf['dbusers']['xtrabackup']['password'] }} priv="*.*:grant,reload,replication client"
+
+- name: PERCONA | Update root password
+  mysql_user: name=root host={{ item }} password={{ galera_conf['dbusers']['root']['password'] }} login_user=root login_password={{ galera_conf['dbusers']['root']['password'] }} check_implicit_admin=yes
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - localhost

@@ -1,0 +1,11 @@
+---
+- name: PERCONA | Fetch the repository package
+  get_url:
+    url: "https://repo.percona.com/apt/percona-release_0.1-4.{{ ansible_distribution_release }}_all.deb"
+    dest: /root
+
+- name: PERCONA | Install the repository package
+  shell: dpkg -i /root/percona-release_0.1-4.{{ ansible_distribution_release }}_all.deb
+
+- name: PERCONA | Update apt cache
+  apt: update_cache=yes
