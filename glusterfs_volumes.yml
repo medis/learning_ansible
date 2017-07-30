@@ -1,31 +1,5 @@
 ---
 # https://www.jeffgeerling.com/blog/simple-glusterfs-setup-ansible
-# - hosts: gluster1
-#   tasks:
-#     — name: GlusterFS | Create Volume 1
-#       gluster_volume:
-#         state: present
-#         name: test1
-#         bricks: /bricks/test1
-#         rebalance: yes
-#         cluster:
-#           - 192.168.1.227
-#           - 192.168.1.130
-#         run_once: true
-
-# - hosts: gluster2
-#   tasks:
-#     — name: GlusterFS | Create Volume 2
-#       gluster_volume:
-#         state: present
-#         name: test1
-#         bricks: /bricks/test1
-#         rebalance: yes
-#         cluster:
-#           - 192.168.1.227
-#           - 192.168.1.130
-#         run_once: true
-
 - hosts: gluster
   become: true
 

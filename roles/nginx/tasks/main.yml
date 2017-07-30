@@ -18,3 +18,8 @@
   service:
     name: nginx
     state: started
+
+- name: NGINX | Copy Drupal Configuration
+  synchronize:
+    src: files/
+    dest: /etc/nginx/
