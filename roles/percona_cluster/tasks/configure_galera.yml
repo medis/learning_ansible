@@ -1,5 +1,26 @@
 ---
-- name: PERCONA | Configure Percona XtraDB Cluster
-  template: src=etc/mysql/my.cnf.j2
-            dest=/etc/mysql/my.cnf
-            mode=0640 owner=mysql group=root
+- name: PERCONA | Configure Percona XtraDB Cluster server
+  template: 
+    src: etc/mysql/my.cnf.j2
+    dest: /etc/mysql/my.cnf
+    mode: 0640
+    owner: mysql
+    group: root
+  tags:
+  - templates
+
+- name: PERCONA | Configure /etc/services
+  lineinfile:
+    dest: /etc/services
+    line: "mysqlchk        9200/tcp                # mysqlchk"
+  tags:
+  - xinetd
+
+- name: PERCONA | Configure xinetd
+  template:
+    src: etc/xinetd.d/mysqlchk
+    dest: /etc/xinetd.d/mysqlchk
+    mode: 0600
+  notify: restart xinetd
+  tags:
+  - xinetd

@@ -1,12 +1,17 @@
 ---
 # file: vars/main.yml
 # these values are default - change for security!
-galera_conf:
-    bind_address: 0.0.0.0
-    dbusers:
-        xtrabackup:
-            username: xtrabackup
-            password: xtrabackup
-        root:
-            username: root
-            password: rootpassword
+galera_bootstrap: True
+galera_bind_address: 0.0.0.0
+galera_datadir: /var/lib/mysql
+galera_logdir: /var/log/mysql
+galera_dbusers:
+  xtrabackup:
+    username: xtrabackup
+    password: xtrabackup
+  clustercheck:
+    username: clustercheck
+    password: clustercheck
+  root:
+    username: root
+    password: rootpassword

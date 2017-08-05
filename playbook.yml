@@ -6,7 +6,7 @@
       raw: sudo apt-get -y install python-minimal python-apt
 
 # DB
-# https://github.com/morganchristiansson/ansible-galera
+# https://github.com/jesusch/ansible-galera
 - hosts: percona_cluster
   become: true
   roles:

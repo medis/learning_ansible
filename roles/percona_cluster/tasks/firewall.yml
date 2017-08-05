@@ -1,0 +1,31 @@
+---
+- name: PERCONA | Configure firewall defaults
+  ufw: direction={{ item.direction }} policy={{ item.policy }}
+  with_items:
+    - { direction: 'incoming', policy: 'deny' }
+    - { direction: 'outgoing', policy: 'allow' }
+  notify:
+    - restart ufw
+
+- name: PERCONA | Open ports
+  ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
+  with_items:
+    - { rule: 'allow', port: '22', proto: 'tcp' }
+    - { rule: 'allow', port: '3305', proto: 'tcp' }
+    - { rule: 'allow', port: '3306', proto: 'tcp' }
+    - { rule: 'allow', port: '4444', proto: 'tcp' }
+    - { rule: 'allow', port: '4567', proto: 'tcp' }
+    - { rule: 'allow', port: '4567', proto: 'udp' }
+    - { rule: 'allow', port: '4568', proto: 'tcp' }
+    - { rule: 'allow', port: '9200', proto: 'tcp' }
+  notify:
+    - restart ufw
+
+- name: PERCONA | Enable ufw
+  ufw:
+    state: enabled
+
+- name: PERCONA | Enable ufw logging
+  ufw: logging=on
+  notify:
+    - restart ufw

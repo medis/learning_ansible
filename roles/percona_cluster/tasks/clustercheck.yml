@@ -1,0 +1,19 @@
+- name: Stop all mysql daemons
+  service:
+    name: mysql
+    state: stopped
+  when: galera_bootstrap
+  tags:
+    - bootstrap
+
+- name: Bootstrap cluster
+  shell: service mysql bootstrap-pxc
+  when: galera_bootstrap and groups.percona_cluster.index(inventory_hostname) == 0
+  tags:
+    - bootstrap
+
+- name: Start Sync
+  shell: service mysql start
+  when: galera_bootstrap and groups.percona_cluster.index(inventory_hostname) != 0
+  tags:
+    - bootstrap
