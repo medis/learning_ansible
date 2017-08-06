@@ -1,0 +1,4 @@
+- name: GlusterFS | Install glusterfs-server
+  apt:
+    pkg: glusterfs-server
+    state: latest

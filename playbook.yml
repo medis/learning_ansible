@@ -18,6 +18,10 @@
   roles:
     - php-fpm
     - nginx
-    - glusterfs
 
-- include: glusterfs_volumes.yml
+# glusterfs
+# https://www.jeffgeerling.com/blog/simple-glusterfs-setup-ansible
+- hosts: gluster
+  become: true
+  roles:
+    - glusterfs
