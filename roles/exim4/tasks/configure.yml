@@ -10,9 +10,3 @@
     - run update-exim4.conf
     - restart exim4
     - send test email
-
-# - name: Exim4 | Start Postfix on server boot
-#   service: >
-#     name={{ postfix_service }}
-#     state=started
-#     enabled=yes
