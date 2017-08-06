@@ -1,0 +1,18 @@
+---
+- name: Exim4 | Write configuration template
+  template:
+    src: update-exim4.conf.conf.j2
+    dest: "{{ exim4_config_dir }}/update-exim4.conf.conf"
+    mode: 0640
+    owner: root
+    group: root
+  notify:
+    - run update-exim4.conf
+    - restart exim4
+    - send test email
+
+# - name: Exim4 | Start Postfix on server boot
+#   service: >
+#     name={{ postfix_service }}
+#     state=started
+#     enabled=yes

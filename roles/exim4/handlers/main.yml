@@ -1,0 +1,12 @@
+- name: run update-exim4.conf
+  command: update-exim4.conf
+
+- name: restart exim4
+  service: name=exim4 state=restarted
+
+- name: send test email
+  when:
+    - exim4_notify_email and not false
+    - exim4_notify_email is defined
+  shell: >
+    echo "This is a test message from Ansible configuration of {{ ansible_hostname }} at $(date -R)" | sendmail {{ exim4_notify_email }}

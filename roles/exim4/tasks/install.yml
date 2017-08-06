@@ -1,0 +1,5 @@
+---
+- name: Exim4 | Install
+  apt:
+    pkg: exim4
+    state: latest

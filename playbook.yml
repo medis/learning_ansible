@@ -18,6 +18,7 @@
   roles:
     - php-fpm
     - nginx
+    - exim4
 
 # glusterfs
 # https://www.jeffgeerling.com/blog/simple-glusterfs-setup-ansible

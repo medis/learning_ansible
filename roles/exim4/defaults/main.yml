@@ -1,0 +1,4 @@
+exim4_config_dir: '/etc/exim4'
+exim4_service: 'exim4'
+exim4_notify_email: 'aubuka@gmail.com'
+exim4_sender_hostname: 'ubuntu-server'
